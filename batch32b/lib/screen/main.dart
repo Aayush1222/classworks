@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:batch32b/app/app.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello world'),
-        ),
-      ),
-    ),
+    const App(),
   );
 }
