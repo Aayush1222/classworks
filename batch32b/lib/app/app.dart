@@ -1,4 +1,6 @@
-import 'package:batch32b/screen/arithmetic_screen.dart';
+import 'package:batch32b/screen/dashboard.dart';
+//import 'package:batch32b/screen/simple_interest.dart';
+
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -8,7 +10,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ArithmeticScreen(),
+      //home: SimpleInterest(),
+      home: DashBoard(),
     );
   }
 }

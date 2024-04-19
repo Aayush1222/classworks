@@ -8,74 +8,105 @@ class ArithmeticScreen extends StatefulWidget {
 }
 
 class _ArithmeticScreenState extends State<ArithmeticScreen> {
-// Delcare variables
   int? first;
   int? second;
-  int result = 0;
+  int? result;
+
+  final myKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[100],
+      backgroundColor: Colors.cyan.shade50,
       appBar: AppBar(
         title: const Text("Arithmetic"),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.cyan,
         centerTitle: true,
-        elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          children: [
-            TextField(
-              onChanged: (value) {
-                first = int.parse(value);
-              },
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Enter First No',
-              ),
-            ),
-            const SizedBox(height: 8),
-            TextField(
-              onChanged: (value) {
-                second = int.parse(value);
-              },
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Enter Second No',
-              ),
-            ),
-            const SizedBox(height: 8),
-            // Button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    result = first! + second!;
-                  });
+        padding: const EdgeInsets.all(8.0),
+        child: Form(
+          key: myKey,
+          child: Column(
+            children: [
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Enter a Number";
+                  } else {
+                    return null;
+                  }
                 },
-                child: const Text(
-                  'Add',
-                  style: TextStyle(
-                    fontSize: 25,
+                onChanged: (value) {
+                  first = int.tryParse(value);
+                },
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: "Enter a number",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Enter a Number";
+                  } else {
+                    return null;
+                  }
+                },
+                onChanged: (value) {
+                  second = int.tryParse(value);
+                },
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: "Enter a number",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 10),
+              // Button
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (myKey.currentState!.validate()) {
+                      setState(() {
+                        result = first! + second!;
+                      });
+                    }
+                  },
+                  child: const Text(
+                    'Add',
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 8),
-
-            // Display informatuion
-            Text(
-              'Sum is : $result',
-              style: const TextStyle(
-                fontSize: 30,
+              const SizedBox(height: 10),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (first != null && second != null) {
+                      setState(() {
+                        result = first! - second!;
+                      });
+                    }
+                  },
+                  child: const Text(
+                    'Subtract',
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 10),
+              Text("Output is : ${result ?? 'N/A'}"),
+            ],
+          ),
         ),
       ),
     );
