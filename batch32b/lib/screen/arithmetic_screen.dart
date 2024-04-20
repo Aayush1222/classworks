@@ -1,3 +1,4 @@
+import 'package:batch32b/model/airthmetic_model.dart';
 import 'package:flutter/material.dart';
 
 class ArithmeticScreen extends StatefulWidget {
@@ -13,6 +14,7 @@ class _ArithmeticScreenState extends State<ArithmeticScreen> {
   int? result;
 
   final myKey = GlobalKey<FormState>();
+  ArithmeticModel? arithmeticModel;
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +93,9 @@ class _ArithmeticScreenState extends State<ArithmeticScreen> {
                   onPressed: () {
                     if (first != null && second != null) {
                       setState(() {
-                        result = first! - second!;
+                        arithmeticModel =
+                            ArithmeticModel(first: first!, second: second!);
+                        result = arithmeticModel!.add();
                       });
                     }
                   },

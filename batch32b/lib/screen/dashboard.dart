@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:batch32b/screen/arithmetic_screen.dart';
 import 'package:batch32b/screen/simple_interest.dart';
-import 'package:flutter/material.dart';
+import 'package:batch32b/screen/circle_screen.dart'; // Import CircleScreen
 
 class DashBoard extends StatelessWidget {
-  const DashBoard({super.key});
+  const DashBoard({super.key}); // Fix constructor syntax
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +20,6 @@ class DashBoard extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  // Action for first button
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -27,17 +28,29 @@ class DashBoard extends StatelessWidget {
                 },
                 child: const Text('Arithmetic Screen'),
               ),
-              const SizedBox(height: 20), // Adding some space between buttons
+              const SizedBox(height: 20), // Adding space between buttons
               ElevatedButton(
                 onPressed: () {
-                  // Action for first button
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const SimpleInterest()),
+                        builder: (context) => const SimpleInterestScreen()),
                   );
                 },
                 child: const Text('Simple Interest'),
+              ),
+              const SizedBox(height: 20), // Adding space between buttons
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            const CircleScreen()), // Navigate to CircleScreen
+                  );
+                },
+                child: const Text(
+                    'Circle Area Calculator'), // Text for the new button
               ),
             ],
           ),

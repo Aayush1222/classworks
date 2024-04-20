@@ -1,19 +1,22 @@
+import 'package:batch32b/model/simple_interest.dart';
 import 'package:flutter/material.dart';
 
-class SimpleInterest extends StatefulWidget {
-  const SimpleInterest({super.key});
+class SimpleInterestScreen extends StatefulWidget {
+  const SimpleInterestScreen({super.key});
 
   @override
-  State<SimpleInterest> createState() => _SimpleInterestState();
+  State<SimpleInterestScreen> createState() => _SimpleInterestScreenState();
 }
 
-class _SimpleInterestState extends State<SimpleInterest> {
+class _SimpleInterestScreenState extends State<SimpleInterestScreen> {
   final _formKey = GlobalKey<FormState>();
+  SimpleInterestModel? simpleInterest;
+  //late SimpleInterest simpleInterest;
 
   // Declare variables
-  double? first;
-  double? second;
-  double? third;
+  double? principle;
+  double? rate;
+  double? time;
   double result = 0;
 
   @override
@@ -35,13 +38,13 @@ class _SimpleInterestState extends State<SimpleInterest> {
               TextFormField(
                 onChanged: (value) {
                   setState(() {
-                    first = double.tryParse(value);
+                    principle = double.tryParse(value);
                   });
                 },
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Principle',
+                  labelText: 'principle',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -54,13 +57,13 @@ class _SimpleInterestState extends State<SimpleInterest> {
               TextFormField(
                 onChanged: (value) {
                   setState(() {
-                    second = double.tryParse(value);
+                    rate = double.tryParse(value);
                   });
                 },
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Rate',
+                  labelText: 'rate',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -73,13 +76,13 @@ class _SimpleInterestState extends State<SimpleInterest> {
               TextFormField(
                 onChanged: (value) {
                   setState(() {
-                    third = double.tryParse(value);
+                    time = double.tryParse(value);
                   });
                 },
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Time',
+                  labelText: 'time',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -96,7 +99,9 @@ class _SimpleInterestState extends State<SimpleInterest> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       setState(() {
-                        result = (first! * second! * third!) / 100;
+                        simpleInterest = SimpleInterestModel(
+                            principle: principle!, rate: rate!, time: time!);
+                        result = simpleInterest!.simp();
                       });
                     }
                   },
