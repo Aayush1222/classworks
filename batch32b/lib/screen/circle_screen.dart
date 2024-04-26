@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:batch32b/model/circle_model.dart'; // Import CircleModel
 
 class CircleScreen extends StatefulWidget {
-  const CircleScreen({Key? key}) : super(key: key); // Fix constructor syntax
+  const CircleScreen({super.key}); // Fix constructor syntax
 
   @override
   State<CircleScreen> createState() => _CircleScreenState();

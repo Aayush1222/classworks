@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:batch32b/model/simple_interest.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class SimpleInterestScreen extends StatefulWidget {
   const SimpleInterestScreen({super.key});
@@ -81,7 +84,15 @@ class _SimpleInterestScreenState extends State<SimpleInterestScreen> {
                 },
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green),
+                  ),
                   labelText: 'time',
                 ),
                 validator: (value) {
@@ -122,6 +133,23 @@ class _SimpleInterestScreenState extends State<SimpleInterestScreen> {
                   fontSize: 30,
                 ),
               ),
+              RichText(
+                  text: const TextSpan(
+                text: '',
+                style: TextStyle(color: Colors.black, fontSize: 30),
+                children: <TextSpan>[
+                  TextSpan(
+                      text: 'M',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.amber,
+                        // backgroundColor: Colors.blue,
+                      )),
+                  TextSpan(
+                    text: 'y name is Aayushmann  ',
+                  ),
+                ],
+              )),
             ],
           ),
         ),
